@@ -1,17 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:latres_mobile_124240042/views/favorite_screen.dart';
+import 'package:latres_mobile_124240042/views/home_screen.dart';
+import 'package:latres_mobile_124240042/views/profile_screen.dart';
 
-class Root extends StatelessWidget {
-  final AppBar? appBar;
-  final Widget? body;
+class Root extends StatefulWidget {
+  const new({super.key});
 
-  const new({super.key, this.appBar, this.body});
+  @override
+  State<Root> createState() => _RootState();
+}
+
+class _RootState extends State<Root> {
+  int _currentIndex = 0;
+
+  List<Widget> pages = [HomeScreen(), FavoriteScreen(), ProfileScreen()];
+
+  final List<String> _pageTitles = ["Beranda", "Favorit", "Profil"];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar,
-      body: body,
-      bottomNavigationBar: BottomNavigationBar(items: ),
+      appBar: AppBar(
+        title: Text(_pageTitles[_currentIndex]),
+      ),
+      body: pages[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorit"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
+        ],
+      ),
     );
   }
 }
