@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-const Color primaryColor = Color(0xFF710014);
-const Color secondaryColor = Color(0xFFB38F6F);
-const Color tertiaryColor = Color(0xFF161616);
-const Color onPrimaryColor = Color(0xFFB38F6F);
-const Color onSecondaryColor = Color(0xFF161616);
+const Color primaryColor = Color(0xFFF4EAD5);
+const Color secondaryColor = Color(0xFF1E3B2F);
+const Color tertiaryColor = Color(0xFFFF3EA5);
+const Color onPrimaryColor = Color(0xFF1E3B2F);
+const Color onSecondaryColor = Color(0xFFF4EAD5);
 const Color onTertiaryColor = Color(0xFFEFEFEF);
 
 final ThemeData appTheme = ThemeData(
@@ -31,8 +31,8 @@ final ThemeData appTheme = ThemeData(
   iconTheme: const IconThemeData(color: onPrimaryColor),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: primaryColor,
-    selectedItemColor: secondaryColor,
-    unselectedItemColor: onTertiaryColor,
+    selectedItemColor: onTertiaryColor,
+    unselectedItemColor: onPrimaryColor,
     type: BottomNavigationBarType.fixed,
   ),
 );
