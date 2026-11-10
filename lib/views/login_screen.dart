@@ -24,20 +24,24 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _handleLogin() async {
     if (_usernameController.value.text == "124240042" &&
         _passwordController.value.text == "123") {
-      final saved = await AuthPreferences.saveLogin();
+      final saved = await AuthPreferences.saveLogin(
+        _usernameController.value.text,
+      );
+
       if (!mounted) return;
+
       if (saved) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute<void>(builder: (context) => const Root()),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Unable to save login status")),
+          const SnackBar(content: Text("Status tidak tersimpan!")),
         );
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Invalid username or password")),
+        const SnackBar(content: Text("Username atau Password salah!")),
       );
     }
   }
