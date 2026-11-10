@@ -31,8 +31,8 @@ final ThemeData appTheme = ThemeData(
   iconTheme: const IconThemeData(color: onPrimaryColor),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: primaryColor,
-    selectedItemColor: onTertiaryColor,
-    unselectedItemColor: onPrimaryColor,
+    selectedItemColor: tertiaryColor,
+    unselectedItemColor: secondaryColor,
     type: BottomNavigationBarType.fixed,
   ),
 );

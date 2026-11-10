@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:latres_mobile_124240042/root.dart';
 import 'package:latres_mobile_124240042/theme.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  void _handleLogin(BuildContext context) {
+    if (_usernameController.value.text == "124240042" &&
+        _passwordController.value.text == "124240042") {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute<void>(builder: (context) => const Root()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Invalid username or password")),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +50,7 @@ class LoginScreen extends StatelessWidget {
                   prefixIconColor: secondaryColor,
                   border: InputBorder.none,
                 ),
+                controller: _usernameController,
               ),
               const SizedBox(height: 16),
               TextField(
@@ -46,12 +64,13 @@ class LoginScreen extends StatelessWidget {
                   prefixIconColor: secondaryColor,
                   border: InputBorder.none,
                 ),
+                controller: _passwordController,
               ),
               const SizedBox(height: 32),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => _handleLogin(context),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: tertiaryColor,
                     foregroundColor: onTertiaryColor,
