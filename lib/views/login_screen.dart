@@ -1,19 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:latres_mobile_124240042/auth_preferences.dart';
 import 'package:latres_mobile_124240042/root.dart';
 import 'package:latres_mobile_124240042/theme.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void _handleLogin(BuildContext context) {
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _handleLogin() async {
     if (_usernameController.value.text == "124240042" &&
-        _passwordController.value.text == "124240042") {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute<void>(builder: (context) => const Root()),
-      );
+        _passwordController.value.text == "123") {
+      final saved = await AuthPreferences.saveLogin();
+      if (!mounted) return;
+      if (saved) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute<void>(builder: (context) => const Root()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Unable to save login status")),
+        );
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Invalid username or password")),
@@ -70,7 +91,7 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => _handleLogin(context),
+                  onPressed: _handleLogin,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: tertiaryColor,
                     foregroundColor: onTertiaryColor,
