@@ -14,7 +14,9 @@ class TvShowCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.of(context).push(
-            MaterialPageRoute<void>(builder: (context) => const DetailScreen()),
+            MaterialPageRoute<void>(
+              builder: (context) => DetailScreen(showId: show.id),
+            ),
           );
         },
         child: Padding(

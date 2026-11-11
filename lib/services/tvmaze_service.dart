@@ -6,6 +6,23 @@ import 'package:latres_mobile_124240042/models/tv_show.dart';
 class TvmazeService {
   static final Uri _showsUri = Uri.https('api.tvmaze.com', '/shows');
 
+  Future<TvShow> fetchShow(int id) async {
+    final response = await http
+        .get(Uri.https('api.tvmaze.com', '/shows/$id'))
+        .timeout(const Duration(seconds: 20));
+
+    if (response.statusCode != 200) {
+      throw Exception('Gagal memuat detail TVmaze (${response.statusCode}).');
+    }
+
+    final decoded = jsonDecode(response.body);
+    if (decoded is! Map<String, dynamic>) {
+      throw const FormatException('Format detail TVmaze tidak sesuai.');
+    }
+
+    return TvShow.fromJson(decoded);
+  }
+
   Future<List<TvShow>> fetchShows() async {
     final response = await http
         .get(_showsUri)

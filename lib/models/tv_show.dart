@@ -1,5 +1,6 @@
 class TvShow {
   const TvShow({
+    required this.id,
     required this.name,
     required this.imageUrl,
     required this.rating,
@@ -7,6 +8,7 @@ class TvShow {
     required this.summary,
   });
 
+  final int id;
   final String name;
   final String? imageUrl;
   final double? rating;
@@ -18,6 +20,7 @@ class TvShow {
     final ratingValue = (json['rating'] as Map<String, dynamic>?)?['average'];
 
     return TvShow(
+      id: (json['id'] as num?)?.toInt() ?? 0,
       name: json['name'] as String? ?? 'Tanpa judul',
       imageUrl: image is Map<String, dynamic>
           ? image['medium'] as String?
