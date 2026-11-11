@@ -15,16 +15,27 @@ class TvShow {
   final List<String> genres;
   final String summary;
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'image': imageUrl == null ? null : {'medium': imageUrl},
+      'rating': {'average': rating},
+      'genres': genres,
+      'summary': summary,
+    };
+  }
+
   factory TvShow.fromJson(Map<String, dynamic> json) {
     final image = json['image'];
-    final ratingValue = (json['rating'] as Map<String, dynamic>?)?['average'];
+    final imageUrl = image is Map ? image['medium'] : null;
+    final rating = json['rating'];
+    final ratingValue = rating is Map ? rating['average'] : null;
 
     return TvShow(
       id: (json['id'] as num?)?.toInt() ?? 0,
       name: json['name'] as String? ?? 'Tanpa judul',
-      imageUrl: image is Map<String, dynamic>
-          ? image['medium'] as String?
-          : null,
+      imageUrl: imageUrl is String ? imageUrl : null,
       rating: ratingValue is num ? ratingValue.toDouble() : null,
       genres: (json['genres'] as List<dynamic>? ?? const [])
           .whereType<String>()

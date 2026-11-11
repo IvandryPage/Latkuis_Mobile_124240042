@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:latres_mobile_124240042/auth_preferences.dart';
 import 'package:latres_mobile_124240042/root.dart';
 import 'package:latres_mobile_124240042/theme.dart';
 import 'package:latres_mobile_124240042/views/login_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('favorites');
   runApp(const MainApp());
 }
 

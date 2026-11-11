@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:latres_mobile_124240042/models/tv_show.dart';
+import 'package:latres_mobile_124240042/services/favorite_repository.dart';
 import 'package:latres_mobile_124240042/services/tvmaze_service.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -54,7 +55,11 @@ class _DetailScreenState extends State<DetailScreen> {
           }
 
           final show = snapshot.requireData;
-          return ListView(
+          return ValueListenableBuilder(
+            valueListenable: FavoriteRepository.listenable,
+            builder: (context, box, child) {
+              final isFavorite = box.containsKey(show.id.toString());
+              return ListView(
             padding: const EdgeInsets.all(16),
             children: [
               if (show.imageUrl case final imageUrl?)
@@ -75,6 +80,25 @@ class _DetailScreenState extends State<DetailScreen> {
                 show.name,
                 style: Theme.of(context).textTheme.headlineSmall
                     ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  tooltip: isFavorite
+                      ? 'Hapus dari favorit'
+                      : 'Tambahkan ke favorit',
+                  onPressed: () async {
+                    if (isFavorite) {
+                      await FavoriteRepository.remove(show.id);
+                    } else {
+                      await FavoriteRepository.add(show);
+                    }
+                  },
+                  icon: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: isFavorite ? Colors.red : null,
+                  ),
+                ),
               ),
               const SizedBox(height: 8),
               Row(
@@ -105,6 +129,8 @@ class _DetailScreenState extends State<DetailScreen> {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             ],
+          );
+            },
           );
         },
       ),

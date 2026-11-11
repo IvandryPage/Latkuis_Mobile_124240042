@@ -3,9 +3,10 @@ import 'package:latres_mobile_124240042/models/tv_show.dart';
 import 'package:latres_mobile_124240042/views/detail_screen.dart';
 
 class TvShowCard extends StatelessWidget {
-  const TvShowCard({required this.show, super.key});
+  const TvShowCard({required this.show, this.onRemove, super.key});
 
   final TvShow show;
+  final VoidCallback? onRemove;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +64,12 @@ class TvShowCard extends StatelessWidget {
                   ],
                 ),
               ),
+              if (onRemove != null)
+                IconButton(
+                  tooltip: 'Hapus dari favorit',
+                  onPressed: onRemove,
+                  icon: const Icon(Icons.delete_outline),
+                ),
             ],
           ),
         ),
