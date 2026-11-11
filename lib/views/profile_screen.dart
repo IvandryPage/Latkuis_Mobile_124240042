@@ -46,13 +46,15 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           const Text(
-            "Saran dan Kesan",
+            "Kesan dan Pesan",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
           const Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "Praktikum ini memberi saya pengalaman langsung dalam membangun "
+            "aplikasi dan memahami alur kerja pengembangan perangkat lunak. "
+            "Terima kasih atas bimbingan dan suasana belajar yang menyenangkan. "
+            "Semoga praktikum berikutnya semakin seru dan bermanfaat!",
           ),
           const Spacer(),
           SizedBox(
