@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flicksy/auth_preferences.dart';
-import 'package:flicksy/views/login_screen.dart';
+import 'package:flicksy/screens/login_screen.dart';
+import 'package:flicksy/services/auth_service.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   Future<void> _logout(BuildContext context) async {
-    final cleared = await AuthPreferences.clearLogin();
+    final cleared = await AuthService.clearLogin();
     if (!context.mounted) return;
     if (cleared) {
       Navigator.of(context).pushAndRemoveUntil(
@@ -33,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           FutureBuilder<String?>(
-            future: AuthPreferences.getUsername(),
+            future: AuthService.getUsername(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return const Text("Username tidak dapat dimuat!");

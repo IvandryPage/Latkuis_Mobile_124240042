@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthPreferences {
+class AuthService {
   static const _loginKey = 'isLoggedIn';
   static const _usernameKey = 'username';
 

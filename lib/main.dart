@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:flicksy/auth_preferences.dart';
-import 'package:flicksy/root.dart';
-import 'package:flicksy/theme.dart';
-import 'package:flicksy/views/login_screen.dart';
+import 'package:flicksy/app/root.dart';
+import 'package:flicksy/core/theme.dart';
+import 'package:flicksy/screens/login_screen.dart';
+import 'package:flicksy/services/auth_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
-    _loginStatus = AuthPreferences.isLoggedIn();
+    _loginStatus = AuthService.isLoggedIn();
   }
 
   @override

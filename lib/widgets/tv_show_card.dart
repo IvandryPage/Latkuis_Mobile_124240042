@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flicksy/models/tv_show.dart';
 import 'package:flicksy/services/favorite_service.dart';
-import 'package:flicksy/views/detail_screen.dart';
+import 'package:flicksy/screens/detail_screen.dart';
 
 class TvShowCard extends StatelessWidget {
   const TvShowCard({

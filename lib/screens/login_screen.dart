@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flicksy/auth_preferences.dart';
-import 'package:flicksy/root.dart';
-import 'package:flicksy/theme.dart';
+import 'package:flicksy/app/root.dart';
+import 'package:flicksy/core/theme.dart';
+import 'package:flicksy/services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _handleLogin() async {
     if (_usernameController.value.text == "124240042" &&
         _passwordController.value.text == "123") {
-      final saved = await AuthPreferences.saveLogin(
+      final saved = await AuthService.saveLogin(
         _usernameController.value.text,
       );
 

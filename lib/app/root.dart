@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flicksy/services/favorite_service.dart';
-import 'package:flicksy/views/favorite_screen.dart';
-import 'package:flicksy/views/home_screen.dart';
-import 'package:flicksy/views/profile_screen.dart';
+import 'package:flicksy/screens/favorite_screen.dart';
+import 'package:flicksy/screens/home_screen.dart';
+import 'package:flicksy/screens/profile_screen.dart';
 
 class Root extends StatefulWidget {
   const new({super.key});
