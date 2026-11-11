@@ -1,3 +1,3 @@
-# latres_mobile_124240042
+# Flicksy
 
 A new Flutter project.

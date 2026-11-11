@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:latres_mobile_124240042/auth_preferences.dart';
-import 'package:latres_mobile_124240042/views/login_screen.dart';
+import 'package:flicksy/auth_preferences.dart';
+import 'package:flicksy/views/login_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

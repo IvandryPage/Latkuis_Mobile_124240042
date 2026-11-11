@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:latres_mobile_124240042/views/favorite_screen.dart';
-import 'package:latres_mobile_124240042/views/home_screen.dart';
-import 'package:latres_mobile_124240042/views/profile_screen.dart';
+import 'package:flicksy/services/favorite_service.dart';
+import 'package:flicksy/views/favorite_screen.dart';
+import 'package:flicksy/views/home_screen.dart';
+import 'package:flicksy/views/profile_screen.dart';
 
 class Root extends StatefulWidget {
   const new({super.key});
@@ -12,8 +13,13 @@ class Root extends StatefulWidget {
 
 class _RootState extends State<Root> {
   int _currentIndex = 0;
+  final FavoriteService _favoriteService = FavoriteService();
 
-  List<Widget> pages = [HomeScreen(), FavoriteScreen(), ProfileScreen()];
+  late final List<Widget> pages = [
+    HomeScreen(favoriteService: _favoriteService),
+    FavoriteScreen(favoriteService: _favoriteService),
+    ProfileScreen(),
+  ];
 
   final List<String> _pageTitles = ["Beranda", "Favorit", "Profil"];
 

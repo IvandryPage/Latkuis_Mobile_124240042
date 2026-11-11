@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:latres_mobile_124240042/auth_preferences.dart';
-import 'package:latres_mobile_124240042/root.dart';
-import 'package:latres_mobile_124240042/theme.dart';
+import 'package:flicksy/auth_preferences.dart';
+import 'package:flicksy/root.dart';
+import 'package:flicksy/theme.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

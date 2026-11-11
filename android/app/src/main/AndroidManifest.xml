@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="latres_mobile_124240042"
+        android:label="Flicksy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

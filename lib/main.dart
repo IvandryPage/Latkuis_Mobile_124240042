@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:latres_mobile_124240042/auth_preferences.dart';
-import 'package:latres_mobile_124240042/root.dart';
-import 'package:latres_mobile_124240042/theme.dart';
-import 'package:latres_mobile_124240042/views/login_screen.dart';
+import 'package:flicksy/auth_preferences.dart';
+import 'package:flicksy/root.dart';
+import 'package:flicksy/theme.dart';
+import 'package:flicksy/views/login_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,25 +1,27 @@
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:latres_mobile_124240042/models/tv_show.dart';
+import 'package:flicksy/models/tv_show.dart';
 
-class FavoriteRepository {
+class FavoriteService {
   static const _boxName = 'favorites';
 
-  static Box<dynamic> get _box => Hive.box(_boxName);
+  FavoriteService({Box<dynamic>? box}) : _box = box ?? Hive.box(_boxName);
 
-  static ValueListenable<Box<dynamic>> get listenable => _box.listenable();
+  final Box<dynamic> _box;
 
-  static bool contains(int showId) => _box.containsKey(showId.toString());
+  ValueListenable<Box<dynamic>> get listenable => _box.listenable();
 
-  static Future<void> add(TvShow show) {
+  bool isFavorite(int showId) => _box.containsKey(showId.toString());
+
+  Future<void> addFavorite(TvShow show) {
     return _box.put(show.id.toString(), show.toJson());
   }
 
-  static Future<void> remove(int showId) {
+  Future<void> removeFavorite(int showId) {
     return _box.delete(showId.toString());
   }
 
-  static List<TvShow> getAll() {
+  List<TvShow> getFavorites() {
     return _box.values.map((value) {
       if (value is! Map) {
         throw const FormatException('Data favorit tidak valid.');

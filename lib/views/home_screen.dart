@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:latres_mobile_124240042/models/tv_show.dart';
-import 'package:latres_mobile_124240042/services/tvmaze_service.dart';
-import 'package:latres_mobile_124240042/widgets/tv_show_card.dart';
+import 'package:flicksy/models/tv_show.dart';
+import 'package:flicksy/services/favorite_service.dart';
+import 'package:flicksy/services/tvmaze_service.dart';
+import 'package:flicksy/widgets/tv_show_card.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({required this.favoriteService, super.key});
+
+  final FavoriteService favoriteService;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -37,7 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
         return ListView.builder(
           padding: const EdgeInsets.all(12),
           itemCount: shows.length,
-          itemBuilder: (context, index) => TvShowCard(show: shows[index]),
+          itemBuilder: (context, index) => TvShowCard(
+            show: shows[index],
+            favoriteService: widget.favoriteService,
+          ),
         );
       },
     );

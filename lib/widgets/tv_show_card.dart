@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:latres_mobile_124240042/models/tv_show.dart';
-import 'package:latres_mobile_124240042/views/detail_screen.dart';
+import 'package:flicksy/models/tv_show.dart';
+import 'package:flicksy/services/favorite_service.dart';
+import 'package:flicksy/views/detail_screen.dart';
 
 class TvShowCard extends StatelessWidget {
-  const TvShowCard({required this.show, this.onRemove, super.key});
+  const TvShowCard({
+    required this.show,
+    required this.favoriteService,
+    this.onRemove,
+    super.key,
+  });
 
   final TvShow show;
+  final FavoriteService favoriteService;
   final VoidCallback? onRemove;
 
   @override
@@ -16,7 +23,10 @@ class TvShowCard extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute<void>(
-              builder: (context) => DetailScreen(showId: show.id),
+              builder: (context) => DetailScreen(
+                showId: show.id,
+                favoriteService: favoriteService,
+              ),
             ),
           );
         },

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:latres_mobile_124240042/models/tv_show.dart';
+import 'package:flicksy/models/tv_show.dart';
 
 class TvmazeService {
   static final Uri _showsUri = Uri.https('api.tvmaze.com', '/shows');

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:latres_mobile_124240042/models/tv_show.dart';
-import 'package:latres_mobile_124240042/services/favorite_repository.dart';
-import 'package:latres_mobile_124240042/services/tvmaze_service.dart';
+import 'package:flicksy/models/tv_show.dart';
+import 'package:flicksy/services/favorite_service.dart';
+import 'package:flicksy/services/tvmaze_service.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({required this.showId, super.key});
+  const DetailScreen({
+    required this.showId,
+    required this.favoriteService,
+    super.key,
+  });
 
   final int showId;
+  final FavoriteService favoriteService;
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -56,9 +61,9 @@ class _DetailScreenState extends State<DetailScreen> {
 
           final show = snapshot.requireData;
           return ValueListenableBuilder(
-            valueListenable: FavoriteRepository.listenable,
+            valueListenable: widget.favoriteService.listenable,
             builder: (context, box, child) {
-              final isFavorite = box.containsKey(show.id.toString());
+              final isFavorite = widget.favoriteService.isFavorite(show.id);
               return ListView(
             padding: const EdgeInsets.all(16),
             children: [
@@ -89,9 +94,9 @@ class _DetailScreenState extends State<DetailScreen> {
                       : 'Tambahkan ke favorit',
                   onPressed: () async {
                     if (isFavorite) {
-                      await FavoriteRepository.remove(show.id);
+                      await widget.favoriteService.removeFavorite(show.id);
                     } else {
-                      await FavoriteRepository.add(show);
+                      await widget.favoriteService.addFavorite(show);
                     }
                   },
                   icon: Icon(
